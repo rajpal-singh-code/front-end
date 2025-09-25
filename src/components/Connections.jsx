@@ -6,7 +6,7 @@ import { addConnections } from '../utils/connectionSlice';
 
 const Connections = () => {
     
-    const connections = useSelector((store) => store.connection);
+    const connections = useSelector((store) => store.connections);
     const dispatch = useDispatch();
     const fectchConnections = async() => {
       try{
@@ -22,7 +22,6 @@ const Connections = () => {
     fectchConnections();
    },[]);
 
-   console.log(connections)
    if(!connections) return;
    if(connections.length === 0) return <h1 className='text-green-700 text-2xl text-center my-10'>No Connections Found</h1>;
 
@@ -31,10 +30,10 @@ const Connections = () => {
       <h1 className='font-bold text-3xl text-teal-600'>Connections</h1>
 
       { connections.map((connection) => {
-        const { firstName,lastName,photoUrl,age,gender,about} = connection;
+        const { _id,firstName,lastName,photoUrl,age,gender,about} = connection;
 
         return (
-          <div className='flex m-4 p-4 rounded-lg bg-base-300 w-95 sm:w-110 mx-auto gap-5'>
+          <div key={_id} className='flex m-4 p-4 rounded-lg bg-base-300 w-95 sm:w-110 mx-auto gap-5'>
             <div className=''>
               <img className='w-25 h-25 rounded-full' src={photoUrl} alt="photo" />
             </div>
